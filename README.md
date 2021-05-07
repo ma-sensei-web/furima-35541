@@ -2,68 +2,65 @@
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ------------------------- |
-| nickname        | string | null: false               |
-| email           | string | null: false, unique: true |
-| password        | string | null: false               |
-| first_name      | string | null: false               |
-| last_name       | string | null: false               |
-| first_name_kana | string | null: false               |
-| last_name_kana  | string | null: false               |
-| birthday_year   | string | null: false               |
-| birthday_month  | string | null: false               |
-| birthday_day    | string | null: false               |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name_reading | string  | null: false               |
+| last_name_reading  | string  | null: false               |
+| birthday_id        | integer | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :purchase, through: items
-- has_many :purchase
+- has_many :purchases
 
 ## items テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| name             | string     | null: false                     |
-| explanation      | text       | null: false                    |
-| category         | string     | null: false                    |
-| status           | string     | null: false                    |
-| delivery_charges | string     | null: false                    |
-| delivery_area    | string     | null: false                    |
-| delivery_days    | string     | null: false                    |
-| price            | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
-
-### Association
-
-- has_one :purchase
-
-## purchase テーブル
-
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| user_id     | references | null: false, foreign_key: true |
-| items_id    | references | null: false, foreign_key: true |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| name                | string     | null: false                    |
+| explanation         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| delivery_charges_id | integer    | null: false                    |
+| delivery_area_id    | integer    | null: false                    |
+| delivery_days_id    | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :items
-- has_one :items
-- has_many :address
+- has_one :purchase
 
-## address テーブル
+## purchases テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- has_one :item
+- has_many :addresses
+
+## addresses テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| postal_code     | integer    | null: false                    |
-| prefectures     | string     | null: false                    |
-| municipality    | string     | null: false                    |
-| house_number    | integer    | null: false                    |
-| bilding_name    | string     | null: false                    |
-| phone           | integer    | null: true                     |
-| purchase_id     | references | null: false, foreign_key: true |
+| postal_code     | string     | null: false                    |
+| prefectures_id  | integer    | null: false                    |
+| city            | string     | null: false                    |
+| house_number    | string     | null: false                    |
+| bilding_name    | string     |                                |
+| tel             | string     | null: false, unique: true       |
+| purchase        | references | null: false, foreign_key: true |
 
 ### Association
 
