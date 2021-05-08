@@ -11,7 +11,7 @@
 | last_name          | string  | null: false               |
 | first_name_reading | string  | null: false               |
 | last_name_reading  | string  | null: false               |
-| birthday           | integer | null: false               |
+| birth_date         | date    | null: false               |
 
 ### Association
 
@@ -48,7 +48,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_many :addresses
+- has_one :address
 
 ## addresses テーブル
 
