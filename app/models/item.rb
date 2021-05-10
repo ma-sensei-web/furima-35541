@@ -19,9 +19,11 @@ class Item < ApplicationRecord
     validates :category_id
     validates :status_id
     validates :charge_id
-    validates :area_id
     validates :day_id
   end
 
+  validates :area_id, numericality: { other_than: 0 }
+
   validates :price, numericality: true
+  # , message: 'is invalid. Input harf-widh characters'
 end
