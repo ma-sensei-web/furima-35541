@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders_addresses = OrderAddress.includes(:item).order("created_at DESC")
+    @items = Item.includes(:user).order("created_at DESC")
+    # @orders_addresses = OrderAddress.includes(:item).order("created_at DESC")
   end
-  
 end
