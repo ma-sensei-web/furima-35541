@@ -10,7 +10,7 @@ class OrderAddress
     validates :area_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :house_number
-    validates :phone_number, length: { minimum: 10, message: "is too short" }
+    validates :phone_number, length: { minimum: 10, maximum: 11, message: "is too short" }
   end
   
   validates :phone_number, numericality: { with: /\A[0-9]+\z/, message: "is invalid. Input only number" }

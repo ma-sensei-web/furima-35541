@@ -63,6 +63,18 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
 
+      it 'phone_numberが12文字以上では登録できないこと' do
+        @order_address.phone_number = '090123456789'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is too short")
+      end
+
+      it 'phone_numberが英数混合では登録できないこと' do
+        @order_address.phone_number = 'q0901234567'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end
+
       it 'itemが紐付いていないと保存できないこと' do
         @order_address.item_id = nil
         @order_address.valid?
