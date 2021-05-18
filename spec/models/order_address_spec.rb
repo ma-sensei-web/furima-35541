@@ -58,24 +58,28 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'phone_numberが10文字以下では登録できないこと' do
-        @order_address.phone_number = '0123456789'
+        @order_address.phone_number = '0901234567'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
 
-      # it '重複したphone_numberが存在する場合登録できない' do
-      #   @order_address.save
-      #   another_order_address = FactoryBot.build(:item)
-      #   another_order_address.phone_number = @order_address.phone_number
-      #   another_order_address.valid?
-      #   expect(another_order_address.errors.full_messages).to include('Phone number has already been taken')
-      # end
+      it 'itemが紐付いていないと保存できないこと' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
 
-      # it 'itemが紐付いていないと保存できないこと' do
-      #   @order_address.item_id = nil
-      #   @order_address.valid?
-      #   expect(@order_address.errors.full_messages).to include('Item must exist')
-      # end
+      it 'userが紐付いていないと保存できないこと' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end  
     end
   end
 end
