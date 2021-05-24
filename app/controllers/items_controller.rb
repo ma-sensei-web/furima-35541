@@ -1,10 +1,22 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :set_item, only: [:edit, :show, :update, :destroy, :order]
   before_action :move_to_index, except: [:index, :show, :new, :create]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
+  end
+
+  def order
+    redirect_to new_card_path and return unless current_user.card.present?
+
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    customer_token = current_user.card.customer_token
+    Payjp::Charge.create(
+      amount: @item.price,
+      customer: customer_token,
+      currency: 'jpy'
+    )
   end
 
   def new
