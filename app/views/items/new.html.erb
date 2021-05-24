@@ -20,6 +20,7 @@
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
+        <div id='image-list'></div>
       </div>
     </div>
     <%# /出品画像 %>
@@ -137,7 +138,6 @@
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "出品する" ,class:"sell-btn" %>
-      <div id='image-list'></div>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
