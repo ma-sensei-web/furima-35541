@@ -1,6 +1,6 @@
 <%# cssは商品出品のものを併用しています。
 app/assets/stylesheets/items/new.css %>
-
+<% breadcrumb :edits %>
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
@@ -22,6 +22,7 @@ app/assets/stylesheets/items/new.css %>
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
+        <div id='image-list'></div>
       </div>
     </div>
     <%# /出品画像 %>

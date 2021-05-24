@@ -7,9 +7,14 @@ crumb :items do
   parent :root
 end
 
+crumb :edits do
+  link "商品編集", edits_index_path
+  parent :root
+end
+
 crumb :orders do
   link "購入画面", orders_index_path
-  parent :items
+  parent :root
 end
 
 # crumb :projects do

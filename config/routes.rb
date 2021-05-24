@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   
   get 'items/index'
+  get 'edits/index'
   get 'orders/index'
 
   # resources :users, only: [:show, :update]
