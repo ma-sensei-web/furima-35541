@@ -1,10 +1,12 @@
 <%= render "shared/second-header"%>
+<% breadcrumb :orders %>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
+
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
       <%= image_tag @item.image, class: 'buy-item-img' %>
@@ -122,7 +124,8 @@
     </div>
     <%# /配送先の入力 %>
     <div class='buy-btn'>
-      <%= f.submit "購入" ,class:"buy-red-btn" %>
+      <%= f.submit "購入", class:"buy-red-btn" %>
+      <%# <%= f.submit "購入", order_item_path(@item.id), method: :post, class:"buy-red-btn" %>
     </div>
     <% end %>
   </div>
