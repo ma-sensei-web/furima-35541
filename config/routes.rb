@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'items/index'
   get 'edits/index'
   get 'orders/index'
+  get 'news/index'
 
   resources :users, only: [:show, :update]
   resources :cards, only: [:new, :create]

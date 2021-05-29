@@ -17,6 +17,11 @@ crumb :orders do
   parent :root
 end
 
+crumb :news do
+  link "出品画面", news_index_path
+  parent :root
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
