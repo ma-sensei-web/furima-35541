@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   get 'edits/index'
   get 'orders/index'
 
-  # resources :users, only: [:show, :update]
-  resources :users, only: [:show]
+  resources :users, only: [:show, :update]
   resources :cards, only: [:new, :create]
   resources :items, only: :order do
     post 'order', on: :member
