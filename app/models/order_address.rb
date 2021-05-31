@@ -6,14 +6,14 @@ class OrderAddress
     validates :token
     validates :user_id
     validates :item_id
-    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
-    validates :area_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "はハイフンが必要です。次のように入力してください（例：123-4567）" }
+    validates :area_id, numericality: { other_than: 0, message: "を入力してください" }
     validates :city
     validates :house_number
-    validates :phone_number, length: { minimum: 10, maximum: 11, message: "is too short" }
+    validates :phone_number, length: { minimum: 10, maximum: 11, message: "は最小10桁から最大11桁で入力してください" }
   end
   
-  validates :phone_number, numericality: { with: /\A[0-9]+\z/, message: "is invalid. Input only number" }
+  validates :phone_number, numericality: { with: /\A[0-9]+\z/, message: "は半角数字で入力してください" }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
