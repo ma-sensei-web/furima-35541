@@ -38,6 +38,10 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
 
+  ActionCable.server.config.disable_request_forgery_protection = true
+  config.action_cable.url = "wss://furima-35541.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://furima-35541.herokuapp.com', 'http://furima-35541.herokuapp.com']
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
