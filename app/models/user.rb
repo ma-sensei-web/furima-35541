@@ -1,8 +1,15 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+
+
+  has_many :items
+  has_many :orders
+  has_many :comments
+  has_one :card, dependent: :destroy
+
+  devise :database_authenticatable, :registerable, 
+  :recoverable, 
+  :rememberable, 
+  :validatable
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'は文字と数字の両方を含めてください'
@@ -21,8 +28,4 @@ class User < ApplicationRecord
     validates :last_name_reading
     validates :first_name_reading
   end
-
-  has_many :items
-  has_many :orders
-  has_one :card, dependent: :destroy
 end
