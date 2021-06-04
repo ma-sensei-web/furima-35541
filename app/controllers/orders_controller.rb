@@ -17,6 +17,10 @@ class OrdersController < ApplicationController
     else
       render :index
     end
+    # session["devise.regist_data"] = {user: @user.attributes}
+    # session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    # @order_address = @user.build_order_address
+    # render :new_order_address
   end
 
   private

@@ -43,7 +43,8 @@
       </div>
     <% end %>
     <br>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
+    <%# <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
+    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout"%>
     <br>
     <%= link_to "商品一覧へ戻る", root_path%>
   </div>

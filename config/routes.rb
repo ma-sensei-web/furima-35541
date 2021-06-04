@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get 'orders/index'
   get 'news/index'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
 
   root to: 'items#index'
   resources :items do
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
     resources :comments, only: :create
   end
 
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update, :new]
   resources :cards, only: [:new, :create]
   resources :items, only: :order do
     post 'order', on: :member
