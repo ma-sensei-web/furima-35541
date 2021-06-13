@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'edits/index'
   get 'orders/index'
   get 'news/index'
+  get 'items/search'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
